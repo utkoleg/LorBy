@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/lorby}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+jwt:
+  secret: egfwefwefwefwefwff
+  expires-at: 180000
